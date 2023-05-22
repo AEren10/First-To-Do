@@ -1,8 +1,7 @@
 const username = document.querySelector("#username");
 const listgrup = document.querySelector("#userList")
 const gonder = document.querySelector("#submit");
-const firstsection = document.querySelectorAll(".col-sm-8 offset-sm-2")[0];
-const secondsection = document.querySelectorAll(".col-sm-8 offset-sm-2")[1];
+const firstsection = document.querySelector("#first");
 const reset = document.querySelector("#reset");
 
 
@@ -12,22 +11,25 @@ reset.addEventListener("click",deletealltodo);
 
 
 function check(a){
-
+    
+    
     if(username.value == ""){
-       
+        show("danger","Lütfen Bir To-Do Giriniz")
     }
     else{
-        addtodo(username);
-        alert("succsess","öalşsödşflsadö");
+        addtodo(username);  
+        show("success","To-Do Başarıyla Eklendi")
+        
     }
     
-    a.preventDefault();   
+    a.preventDefault();
 }
 
 function deletetodo(e){
 
     if(e.target.className = "fa-solid fa-xmark"){
         e.target.parentElement.remove();
+        show("primary","To-Do  Silindi")
     }
 
 }
@@ -35,7 +37,9 @@ function deletetodo(e){
 function deletealltodo(){
 
     if(confirm("Tamamen silmek istediğinizden emin misiniz?")){
-    listgrup.innerHTML =  ''}
+    listgrup.innerHTML =  ''
+    show("warning","Tüm To-Do Listesi Silindi")
+    }
 
 }
 
@@ -57,15 +61,17 @@ function addtodo(username){
     
 }
 
-function alert(type,message){
-
+function show(type,message){
+    
     const newdiw = document.createElement("div");
     newdiw.className = `alert alert-${type}`;
     newdiw.textContent = message;
     
-    firstsection.appendChild[0](newdiw);
+    firstsection.appendChild(newdiw);
 
-   
+   setTimeout(function(){
+    newdiw.remove();
+   },1000);
 
    
 }
